@@ -1,52 +1,64 @@
 # face recognition dio
 
-Projeto criado para o desafio da DIO: **criando um sistema de reconhecimento facial do zero**.
+esse projeto foi desenvolvido como desafio prático da dio para montar um fluxo simples de detecção e reconhecimento facial utilizando python e opencv.
 
-A ideia aqui foi montar um fluxo simples, funcional e bem documentado para detectar faces em uma imagem e associar nomes/classes às faces encontradas. O reconhecimento foi representado com labels simulados, deixando o projeto honesto sobre o que foi implementado.
+a ideia foi trabalhar com uma imagem enviada no google colab, detectar os rostos usando haar cascade e desenhar as bounding boxes no resultado final. a parte de reconhecimento foi simulada com labels como `pessoa_1`, `pessoa_2` e assim por diante, só para representar o fluxo completo sem afirmar que houve treino real de um modelo.
 
 ## objetivo
 
-Detectar faces em uma imagem usando OpenCV, desenhar bounding boxes ao redor das faces detectadas e adicionar labels como `pessoa_1`, `pessoa_2` e `pessoa_3`.
+detectar faces em uma imagem, desenhar retângulos ao redor dos rostos encontrados e adicionar labels simulados para representar uma etapa simples de classificação.
 
-O resultado final é salvo em:
+o foco do projeto foi demonstrar o caminho básico:
 
-```bash
-images/output/face_detection_result.jpg
+```text
+carregar imagem -> detectar faces -> desenhar bounding boxes -> exibir resultado
 ```
-
-## o que foi feito
-
-- criação de um script local em Python
-- criação de um notebook para Google Colab
-- detecção facial com Haar Cascade pré-treinado do OpenCV
-- geração de bounding boxes nas faces detectadas
-- criação de labels simulados para representar a etapa de reconhecimento/classificação
-- salvamento da imagem processada em `images/output`
-- documentação sobre como evoluir para reconhecimento facial real com dataset próprio
-
-## detecção facial x reconhecimento facial
-
-Detecção facial é a etapa que localiza onde existem faces em uma imagem. Ela responde à pergunta: "onde há um rosto aqui?".
-
-Reconhecimento facial é a etapa que tenta identificar quem é a pessoa detectada. Ela responde à pergunta: "de quem é esse rosto?".
-
-Neste projeto, a detecção foi implementada com um detector pré-treinado do OpenCV. A etapa de reconhecimento foi simulada com labels automáticos, como `pessoa_1`, para representar o fluxo completo sem afirmar que um modelo próprio foi treinado.
 
 ## tecnologias usadas
 
-- Python
-- OpenCV
-- NumPy
-- Matplotlib
-- Google Colab
+- python
+- opencv
+- numpy
+- matplotlib
+- google colab
+
+## como funciona
+
+o projeto usa o haar cascade do opencv, um classificador pré-treinado bastante usado em exemplos de detecção facial.
+
+ele identifica regiões da imagem que parecem conter rostos. depois disso, o código desenha uma bounding box em cada face detectada e adiciona um texto simples acima dela.
+
+os nomes `pessoa_1`, `pessoa_2`, `pessoa_3` etc são labels simulados. eles não representam uma identificação real da pessoa, porque este projeto não treina um modelo próprio de reconhecimento facial.
+
+## prints do projeto
+
+### notebook no google colab
+
+![notebook no google colab](README-assets/notebook_overview.png)
+
+### carregamento da imagem
+
+![carregamento da imagem](README-assets/image_upload.png)
+
+### desenho das bounding boxes
+
+![desenho das bounding boxes](README-assets/bounding_boxes.png)
+
+### resultado final
+
+![resultado final](README-assets/final_result.png)
 
 ## estrutura do projeto
 
 ```text
 face-recognition-dio/
 ├── README.md
+├── README-assets/
+│   ├── notebook_overview.png
+│   ├── image_upload.png
+│   ├── bounding_boxes.png
+│   └── final_result.png
 ├── requirements.txt
-├── .gitignore
 ├── notebooks/
 │   └── face_recognition_colab.ipynb
 ├── src/
@@ -63,18 +75,14 @@ face-recognition-dio/
 
 ## como rodar no colab
 
-1. Abra o arquivo `notebooks/face_recognition_colab.ipynb` no Google Colab.
-2. Execute as células na ordem.
-3. Faça upload de uma imagem quando o notebook solicitar.
-4. Ao final, o resultado será salvo em:
-
-```bash
-images/output/face_detection_result.jpg
-```
+1. abra o arquivo `notebooks/face_recognition_colab.ipynb` no google colab.
+2. execute as células na ordem.
+3. faça upload de uma imagem quando o notebook pedir.
+4. acompanhe a detecção das faces e o desenho das bounding boxes.
 
 ## como rodar localmente
 
-Crie um ambiente virtual, instale as dependências e execute o script:
+crie um ambiente virtual, instale as dependências e execute o script:
 
 ```bash
 python -m venv .venv
@@ -83,65 +91,42 @@ pip install -r requirements.txt
 python src/main.py
 ```
 
-Antes de executar, coloque uma imagem em:
+antes de executar localmente, coloque uma imagem em:
 
-```bash
+```text
 images/input/input.jpg
+```
+
+o resultado processado é salvo em:
+
+```text
+images/output/face_detection_result.jpg
 ```
 
 ## resultado esperado
 
-O projeto gera uma nova imagem com:
+ao final, o projeto gera uma imagem com:
 
-- retângulos ao redor das faces detectadas
-- labels simulados acima das faces
-- arquivo final salvo em `images/output`
-
-## imagem do resultado
-
-Adicione aqui o print ou a imagem gerada pelo projeto:
-
-```md
-![resultado da detecção facial](images/output/face_detection_result.jpg)
-```
-
-## observações importantes
-
-Este projeto usa um detector pré-treinado para localizar faces. Ele não treina um modelo de reconhecimento facial do zero.
-
-A etapa de reconhecimento/classificação foi representada com labels simulados para demonstrar o fluxo de um sistema completo.
-
-Para transformar isso em reconhecimento real, o próximo passo seria criar um dataset próprio, separar imagens por pessoa e treinar ou ajustar um classificador.
+- faces detectadas pelo haar cascade
+- bounding boxes desenhadas ao redor dos rostos
+- labels simulados acima de cada face
+- imagem final salva na pasta de saída
 
 ## aprendizados
 
-- diferença entre detectar uma face e reconhecer uma pessoa
-- uso do OpenCV para visão computacional
-- aplicação de Haar Cascade para detecção facial
-- desenho de bounding boxes e textos em imagens
-- organização de um projeto simples para entrega técnica
+durante o desenvolvimento, os principais aprendizados foram:
 
-## próximos passos
+- uso básico do opencv em um fluxo de visão computacional
+- diferença entre detectar um rosto e reconhecer uma pessoa
+- aplicação de haar cascade para detecção facial
+- desenho de bounding boxes e textos sobre uma imagem
+- simulação de classificação com labels simples
+- organização de um projeto pequeno de visão computacional com notebook, script e imagens
 
-- montar um dataset próprio com imagens por pessoa
-- extrair faces detectadas para treino
-- testar descritores faciais ou embeddings
-- treinar um classificador real
-- comparar Haar Cascade com detectores mais modernos
+## observações
 
-## comandos git
+este projeto não faz reconhecimento facial real com treino de ia.
 
-```bash
-git init
-git add .
-git commit -m "feat: add face recognition project"
-git branch -M main
-git remote add origin https://github.com/fezleep/face-recognition-dio.git
-git push -u origin main
-```
+a detecção facial foi feita com um modelo pré-treinado do opencv. a parte de reconhecimento foi representada de forma simples usando labels automáticos, porque o objetivo aqui era mostrar o fluxo completo de detecção + reconhecimento facial de uma forma inicial e prática.
 
-O repositório local foi preparado, mas o push não é feito automaticamente.
-
-## conclusão
-
-O projeto entrega um fluxo funcional de detecção facial com OpenCV e simula a etapa de reconhecimento usando labels. A implementação é simples, mas deixa uma base clara para evoluir para reconhecimento facial real com uma base de imagens própria.
+para evoluir o projeto, um próximo passo seria montar um dataset próprio, separar imagens por pessoa e testar uma abordagem real de classificação ou embeddings faciais.
